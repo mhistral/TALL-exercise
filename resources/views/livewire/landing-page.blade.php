@@ -1,10 +1,4 @@
-<div>
-    <div
-        class="flex flex-col w-full h-screen bg-indigo-900"
-        x-data="{
-            showSubscribe: false
-        }"
-    >
+<div class="flex flex-col w-full h-screen bg-indigo-900" x-data="{showSubscribe: false}">
     <nav class="flex pt-5 justify-between container mx-auto text-indigo-200">
         <a href="/" class="text-4xl font-bold">
             <x-application-logo class="w-16 h-16 fill-current">
@@ -41,38 +35,21 @@
         </div>
     </div>
 
-    <div
-        class="flex fixed top-0 bg-gray-900 bg-opacity-60 items-center w-full h-full"
-        x-show="showSubscribe"
-        x-on:click.self="showSubscribe=false"
-        x-on:keydown.escape.window="showSubscribe=false"
-    >
+    <div class="flex fixed top-0 bg-gray-900 bg-opacity-60 items-center w-full h-full" x-show="showSubscribe" x-on:click.self="showSubscribe=false" x-on:keydown.escape.window="showSubscribe=false">
         <div class="m-auto bg-pink-500 shadow-2xl rounded-xl p-8">
 
             <p class="text-white text-5xl font-extrabold text-center">
                 Let's do it!
             </p>
 
-            <form
-                class="flex flex-col items-center p-24"
-                action=""
-                wire:submit.prevent="subscribe"
-            >
-                <x-input
-                    class="px-5 py-3 w-80 border border-blue-400"
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    wire:model="email"
-                ></x-input>
+            <form class="flex flex-col items-center p-24" action="" wire:submit.prevent="subscribe">
+                <x-input class="px-5 py-3 w-80 border border-blue-400" type="email" name="email" placeholder="Email Address" wire:model="email"></x-input>
 
                 <span class="text-gray-100 text-xs">
-                    We will send you a confirmation Email.
+                    We will send you a confirmation Email.z
                 </span>
 
-                <x-button
-                    class="px5 py-3 mt-5 w-80 bg-blue-500 justify-center"
-                >
+                <x-button class="px5 py-3 mt-5 w-80 bg-blue-500 justify-center">
                     Get in
                 </x-button>
             </form>
@@ -80,5 +57,20 @@
         </div>
     </div>
 
-</div>
+    <div class="flex fixed top-0 bg-gray-900 bg-opacity-60 items-center w-full h-full" x-show="showSubscribe" x-on:click.self="showSubscribe=false" x-on:keydown.escape.window="showSubscribe=false">
+
+        <div class="m-auto bg-green-500 shadow-2xl rounded-xl p-8">
+            <p class="animate-pulse text-white text-9xl font-extrabold text-center">
+                &check;
+            </p>
+            <p class="text-white text-5xl font-extrabold text-center mt-16">
+                Great!
+            </p>
+            <p class="text-white text-3xl text-center">
+                See you in your Inbox
+            </p>
+        </div>
+
+    </div>
+
 </div>
