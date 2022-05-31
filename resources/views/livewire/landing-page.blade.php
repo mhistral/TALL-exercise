@@ -3,7 +3,7 @@
         showSubscribe: false,
         showSuccess: false,
     }" >
-    <nav class="flex pt-5 justify-between container mx-auto text-indigo-200">
+    <nav class="container flex justify-between pt-5 mx-auto text-indigo-200">
         <a href="/" class="text-4xl font-bold">
             <x-application-logo class="w-16 h-16 fill-current">
             </x-application-logo>
@@ -18,19 +18,19 @@
         </div>
     </nav>
 
-    <div class="flex container mx-auto items-center h-full" >
-        <div class="flex flex-col w-1/3 items-start">
+    <div class="container flex items-center h-full mx-auto" >
+        <div class="flex flex-col items-start w-1/3">
 
-            <h1 class="text-white font-bold text-5xl leading-tight mb-4">
+            <h1 class="mb-4 text-5xl font-bold leading-tight text-white">
                 Simple generic landing page to Subscribe
             </h1>
 
-            <p class="text-indigo-200 text-xl mb-10">
+            <p class="mb-10 text-xl text-indigo-200">
                 We Are just checking <span class="font-bold underline">TALL</span> stack. Would you mind subscribing?
             </p>
 
             <x-button
-                class="py-3 px-8 bg-red-500 hover:bg-red-600"
+                class="px-8 py-3 bg-red-500 hover:bg-red-600"
                 x-on:click="showSubscribe=true"
             >
                 Subscribe
@@ -41,31 +41,35 @@
 
 
     <x-modal class="bg-pink-500" trigger="showSubscribe">
-        <p class="text-white text-5xl font-extrabold text-center">
+        <p class="text-5xl font-extrabold text-center text-white">
             Let's do it!
         </p>
 
         <form class="flex flex-col items-center p-24" action="" wire:submit.prevent="subscribe">
-            <x-input class="px-5 py-3 w-80 border border-blue-400" type="email" name="email" placeholder="Email Address" wire:model="email"></x-input>
+            <x-input class="px-5 py-3 border border-blue-400 w-80" type="email" name="email" placeholder="Email Address" wire:model="email"></x-input>
 
-            <span class="text-gray-100 text-xs">
-                We will send you a confirmation Email
+            <span class="text-xs text-gray-100">
+                {{
+                    $errors->has('email')
+                    ? $errors->first('email')
+                    : "We will send you a confirmation Email"
+                }}
             </span>
 
-            <x-button class="px5 py-3 mt-5 w-80 bg-blue-500 justify-center">
+            <x-button class="justify-center py-3 mt-5 bg-blue-500 px5 w-80">
                 Get in
             </x-button>
         </form>
     </x-modal>
 
     <x-modal class="bg-green-500" trigger="showSuccess">
-        <p class="animate-pulse text-white text-9xl font-extrabold text-center">
+        <p class="font-extrabold text-center text-white animate-pulse text-9xl">
             &check;
         </p>
-        <p class="text-white text-5xl font-extrabold text-center mt-16">
+        <p class="mt-16 text-5xl font-extrabold text-center text-white">
             Great!
         </p>
-        <p class="text-white text-3xl text-center">
+        <p class="text-3xl text-center text-white">
             See you in your Inbox
         </p>
     </x-modal>
