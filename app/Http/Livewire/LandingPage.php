@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
 class LandingPage extends Component
@@ -28,6 +29,15 @@ class LandingPage extends Component
             ]);
 
             $notification = new VerifyEmail;
+            $notification->createUrlUsing(function($notifiable){ // customized URL of the email link that are sent
+                return URL::temporarySignedRoute(
+                    'subscribers.verify',
+                    now()->addMinutes(30),
+                    [
+                        'subscriber' => $notifiable->getKey()
+                    ]
+                );
+            });
             $subscriber->notify($notification); // send notification to the subscriber
         }, $deadlockRestries = 5); // when the sending verification is in progress and the other one is trying to subscribe, we can retry it serveral times
 
